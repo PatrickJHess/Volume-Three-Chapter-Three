@@ -1,0 +1,25 @@
+echo "node_modules/" >> .gitignore
+echo "package-lock.json" >> .gitignore
+
+# Build artifacts
+_build/
+_temp/
+
+# Virtual Environment
+jupyter_2_env/
+venv/
+.venv/
+env/
+bin/
+lib/
+include/
+pyvenv.cfg
+
+# Jupyter & OS leftovers
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+
+# PDF leftovers
+*.pdf
+*.tex

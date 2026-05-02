@@ -1,0 +1,19 @@
+pip
+numpy
+pandas
+openpyxl
+pathvalidate
+matplotlib
+python-dateutil
+holidays
+ipynbname
+bs4
+lxml
+# Ensure JupyterLab is installed
+jupyterlab
+
+# Extension to render MyST Markdown in JupyterLab
+jupyterlab-myst
+
+# (Optional but recommended) Allows you to open and run .md files as notebooks
+jupytext
