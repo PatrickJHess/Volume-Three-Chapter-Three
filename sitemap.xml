@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:3005/sitemap_style.xsl" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://localhost:3005</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3005/interacting-with-jupyter-books</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3005/chapter-three-highlights</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3005/inferring-zero-prices</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3005/bond-payment-data</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3005/bootstrappinmg-zero-prices</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3005/imported-functions</loc>
+  </url>
+</urlset>
