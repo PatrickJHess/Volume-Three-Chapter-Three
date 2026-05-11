@@ -49,6 +49,9 @@ project:
           url: https://patrickjhess.github.io/Volume-Three-Chapter-One/
         - title: 'Chapters Two: Accrued Interest'
           url: https://patrickjhess.github.io/Volume-Three-Chapter-Two/
+        - title: 'Chapters Four: Bootstrapping The Term Structure With Nelson and Siegel'
+          url: https://patrickjhess.github.io/Volume-Three-Chapter-Four/
+
 
   jupyter:
     binder:
