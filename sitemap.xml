@@ -11,15 +11,12 @@
     <loc>http://localhost:3000/chapter-three-highlights</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/inferring-zero-prices</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/bond-payment-data</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/bootstrappinmg-zero-prices</loc>
+    <loc>http://localhost:3000/bootstrapping-zero-prices</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/imported-functions</loc>
+    <loc>http://localhost:3000/summary</loc>
   </url>
 </urlset>

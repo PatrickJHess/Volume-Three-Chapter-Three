@@ -1,4 +1,4 @@
-# Working with Jupyter Books
+# Interacting with Jupyter Books
 
 This and other chapters of *Basic Concepts of Fixed Income*, contain two types of documents:
 

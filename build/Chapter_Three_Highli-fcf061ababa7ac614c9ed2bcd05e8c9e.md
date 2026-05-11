@@ -1,4 +1,4 @@
-# ***Bootstrapping Zero Prices With Ordinary Least Squares***
+# ***Chapter Highlights***
 
 **Key Topics Covered**
 
@@ -26,21 +26,21 @@
 
 ## ***Background***
 
-This chapter's examples and discussions rely on the **Pandas and **NumPy** libraries.
+This chapter's examples and discussions rely on the **Pandas** and **NumPy** libraries.
 
 * **Pandas** is introduced in [*A Quick Introduction to Pandas*](https://patrickjhess.github.io/Introduction-To-Python-For-Financial-Python/An_Introduction_To_Pandas.html#a-quick-introduction-to-pandas).  
 * **NumPy** is introduced in [*A Quick Introduction to NumPy*](https://patrickjhess.github.io/Introduction-To-Python-For-Financial-Python/An_Introduction_To_NumPy.html#a-quick-introduction-to-numpy).  
 * Additional relevant Python concepts can be found in the introductory volume, [*Background Material: An Introduction to Python for Financial Python*](https://patrickjhess.github.io/Introduction-To-Python-For-Financial-Python/intro.html), that relate to this and other chapters of *Basic Concepts of Fixed Income*.
 
-**The chapter includes four  sections:**
+**The chapter includes four sections:**
 
 1. *Inferring zero prices from the present value function*  demonstrates how to estimate zero prices or present value factors from a sample of bonds.  
 2. The  Jupyter notebook *Bond Payment Data* that calculates the actual payment dates and amounts.  
 3. The  Jupyter notebook *Bootstrapping Zero Prices With FEDInvest Data*  
    * downloads data from FREDInvest..  
-   * calculate the payoff matrix.  
+   * calculates the payoff matrix.  
    * calculates transaction prices  
    * estimates zero prices with ordinary least squares  
    * graphs spot rates calculated from the estimated spot prices  
-4. *Functions Imported by Bootstrapping The Terms Structure of Interest Rates*  describes the function imported from DropBox (*module\_basic\_concepts\_fixed\_income*).
+4. *Imported Functions*  describes the functions imported from DropBox (*module\_basic\_concepts\_fixed\_income*).
 
