@@ -18,8 +18,8 @@ This formula allows for the recursive calculation of present value factors (zero
 
 Consider two bonds:
 
-1. A bond that pays \\$100 in six months and sells for \$97.50.  
-2. A bond that matures in one year, pays a semi-annual \\$2 coupon, and sells for $100.
+1. A bond that pays \$100 in six months and sells for \$97.50.  
+2. A bond that matures in one year, pays a semi-annual \$2 coupon, and sells for $100.
 
 The present value factor for six months, $\text{PV(0.5)}$, is the ratio of the price to the final payment for the first bond:
 
@@ -66,18 +66,18 @@ $\text{Bond Values} = \text{Payoffs} \times \text{Zero Prices}$
 1.  $\text{Bond Values} =\begin{pmatrix}
 97.5  \\
 100  \\
-\end{pmatrix}
-$
+\end{pmatrix}$
 
-2.   $\text{Zero Prices}\hspace{.4cm}=\begin{pmatrix}
+2.   $\text{Payoffs} \hspace{0.85cm}=\begin{pmatrix}
+100 &0  \\
+2 &102  \\
+\end{pmatrix}$
+
+3.   $\text{Zero Prices}\hspace{.35cm}=\begin{pmatrix}
 PV(0.5)  \\
 PV(1)  \\
 \end{pmatrix}$
 
-3.   $\text{Payoffs} \hspace{1.15cm}=\begin{pmatrix}
-100 &0  \\
-2 &102  \\
-\end{pmatrix}$   
 
 <br>
 
@@ -102,13 +102,14 @@ The goal is to solve for the $\text{Zero Prices}$ array. Since the $\text{Payoff
 <br>
 
 
-$$\text{Payoffs}^{-1} = \Large\begin{pmatrix}
+$$\text{Zero Prices} = \text{Payoffs}^{-1} = \Large\begin{pmatrix}
 100 &0  \\
 2 &102  \\
 \end{pmatrix}^{-1} = \begin{pmatrix}
 \frac{1}{100} &0  \\
 \frac{-2}{100\times 102} &\frac{1}{102}  \\
 \end{pmatrix} $$
+
 
 <br>
 <br>
