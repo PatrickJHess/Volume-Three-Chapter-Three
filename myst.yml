@@ -39,10 +39,11 @@ project:
           file: notebooks/bond_payment_data.ipynb
         - title: Bootstrapping Zero Prices With FEDInvest Data
           file: notebooks/Bootstrapping Zero Prices.ipynb
+        - title: Chapter Summary
+          file: Summary.md 
         - title: Imported Functions
           file: imported_functions.md
-        - title: Chapter Summary
-          file: Summary.md
+
     - title: Other Chapters Of The Volume
       children:
         - title: 'Chapters One: Bond Pricing and a First Look at the Term Structure Of Interest Rates'
