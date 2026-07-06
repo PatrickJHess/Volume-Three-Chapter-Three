@@ -30,19 +30,18 @@ project:
           file: Interacting With Jupyter Books.md
     - title: 'Chapter Three: Bootstrapping Zero Prices With Ordinary Least Squares'
       children:
-        - title: Chapter Highlights
+        - title: ✨ Chapter Highlights
           file: Chapter_Three_Highlights.md
-        - title: Inferring zero prices from the present value function
+        - title: Inferring zero prices from the present value function  📉💸
           file: Inferring_zero_prices.md
-        - title: Bond Payment Data
+        - title: 📊 Bond Payment Data
           file: notebooks/bond_payment_data.ipynb
-        - title: Bootstrapping Zero Prices With FEDInvest Data
+        - title: 📈 Bootstrapping Zero Prices With FEDInvest Data
           file: notebooks/Bootstrapping Zero Prices.ipynb
-        - title: Chapter Summary
-          file: Summary.md 
+        - title: 📝 Chapter Summary
+          file: Summary.md
         - title: Imported Functions
           file: imported_functions.md
-
     - title: Other Chapters Of The Volume
       children:
         - title: 'Chapters One: Bond Pricing and a First Look at the Term Structure Of Interest Rates'
