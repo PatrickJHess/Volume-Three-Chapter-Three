@@ -1,4 +1,4 @@
-# Imported Functions
+# 🛠️ Imported Functions
 
 ::::{dropdown} 🔍 View the helper functions of the Chapter
 

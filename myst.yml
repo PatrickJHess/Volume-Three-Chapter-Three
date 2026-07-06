@@ -1,8 +1,7 @@
 version: 1
 project:
   title: >-
-    Basic Concepts Of Fixed Income-The Term Structure
-    of Interest Rates
+    "🛠️ 🥾Unlocking pure discount rates from coupon-bearing bonds."
   abstract: |
     Bootstrapping Zero Prices With Ordinary Least Squares
   github: PatrickJHess/Volume-Three-Chapter-Three
