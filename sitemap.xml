@@ -11,6 +11,9 @@
     <loc>http://localhost:3000/chapter-three-highlights</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/inferring-zero-prices</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/bond-payment-data</loc>
   </url>
   <url>
