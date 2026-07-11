@@ -27,7 +27,7 @@ project:
     - title: Getting Started
       children:
         - title: Interacting With Jupyter Books
-          file: Interacting With Jupyter Books.md
+          file: shared_files_finpy/Interacting With Jupyter Books
     - title: 'Chapter Three: Bootstrapping Zero Prices With Ordinary Least Squares'
       children:
         - title: ✨ Chapter Highlights
@@ -61,7 +61,7 @@ site:
   template: book-theme
   options:
     repository: https://github.com/PatrickJHess/Volume-Three-Chapter-Three
-    style: static/custom.css
+    style: shared_files_finpy/static/custom.css
     base_url: /Volume-Three-Chapter-Three/
     thebe: true  # This enables the engine
     # The 'binder' block MUST be indented under 'options'
