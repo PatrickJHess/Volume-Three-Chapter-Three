@@ -14,13 +14,13 @@ This chapter focuses on the mathematical methods and practical Python programmin
 * Visualizing the term structure
 
 ### **🐍 Python Concepts**
-* NumPy arrays and the linalg module (matrix_rank, lstsq)
+* 🧮 NumPy arrays and the linalg module (matrix_rank, lstsq)
 
-* Date manipulation using busday_offset and markets_calendars
+* 🗓️ Date manipulation using busday_offset and markets_calendars
 
-* Pandas DataFrames and the .apply() method
+* 🐼 Pandas DataFrames and the .apply() method
 
-* Custom modules (including one_y_axis, accrued_interest, bond_pay_data, create_payoff_matrix, FEDInvest, and clean_FEDInvest)
+* 🧩 financial_quant package
 
 #### **📚 Background & Prerequisites**
 This chapter's examples and discussions rely heavily on the Pandas and NumPy libraries. The following introductory materials are recommended for context:
@@ -40,5 +40,5 @@ This chapter is divided into the following four distinct sections:
 
 * **💻 Bootstrapping Zero Prices With FEDInvest Data (Jupyter Notebook)**: Downloads data from FEDInvest, calculates the payoff matrix and transaction prices, estimates zero prices using ordinary least squares, and graphs spot rates calculated from those estimated prices.
 
-* **📦 Imported Functions**: Details the specific custom functions imported from DropBox (module_basic_concepts_fixed_income).
+* **📦 Imported Functions**: describes the functions imported from financial_quant package.
 

@@ -11,17 +11,14 @@ def adjust_bond_pay_dates(dates,calendar='SIFMAUS'):
   dates can be a scalar, pandas series, or numpy array (datetime.date,timestamp, or datetime64)
   """
 
-  import pandas as pd
-  import numpy as np
-  import pandas_market_calendars as mcal
-  from pandas.tseries.holiday import GoodFriday
+
 
   # Ensure dates is a DatetimeIndex
   if not pd.api.types.is_scalar(dates):
       dates = pd.DatetimeIndex(pd.to_datetime(dates))
   else:
       dates = pd.DatetimeIndex(pd.to_datetime([dates]))
-
+      
   sifma = mcal.get_calendar(calendar)
   sifma_holidays = sifma.holidays().holidays
   good_fridays = GoodFriday.dates('2000-01-01', '2060-12-31')
@@ -41,10 +38,10 @@ def adjust_bond_pay_dates(dates,calendar='SIFMAUS'):
       roll='forward',
       holidays=numpy_holidays
   )
-
+  
   final_dates = pd.to_datetime(actual_payment_dates).date
 
-  return final_dates 
+  return final_dates
 ```
 :::
 
@@ -203,9 +200,12 @@ def FEDInvest(price_date):
   """
     Fetches historical security prices from the FedInvest portal.
 
+
     Args:
         price_date (datetime.date): The date for which to retrieve prices.
             Note: Current day is typically available after 1:00 PM ET on business days.
+
+
 
 
     Returns:
@@ -215,29 +215,46 @@ def FEDInvest(price_date):
         tuple: (str, None) if the request fails or no data is found for the date
                 (attempt to fetch current day before 1:00 PM ET).
 
+
     Example:
         >>> from datetime import date
         >>> df, stamp = FEDInvest(date(2025, 3, 17))
   """
-  import requests
-  from io import StringIO
-  import pandas as pd
-  from datetime import datetime, date
-  from dateutil.relativedelta import relativedelta
 
-  # check for date or datetime
-  validate_date(price_date)
 
+  def make_date(date_value):
+    # datetime64 are conerted
+    if not isinstance(date_value,(datetime,date)):
+      try:
+        date_value=pd.Timestamp(date_value).date()
+      except Exception as e: # Catch anything else unexpected
+        print(f"wrong type for settlement or maturity {e}")
+
+
+      date_value=pd.Timestamp(settlement).date()
+    # convert timestamps and datetimes to date
+    else:
+      try:
+        date_value=date_value.date()
+      except:
+        pass
+    return date_value
+
+
+  price_date=make_date(price_date)
   # make share date of prices and settlement date are settlement dates
-  price_date=adjust_bond_pay_dates(price_date)
+  price_date=adjust_bond_pay_dates(price_date)[0]
   if price_date > date.today():
     return "price_date is in the future", None, None
-  
+
+
   settlement_date=price_date+relativedelta(days=1)
   settlement_date=adjust_bond_pay_dates(settlement_date)
 
+
   # URL address of Treasury Direct Select A Date
   url = "https://treasurydirect.gov/GA-FI/FedInvest/selectSecurityPriceDate"
+
 
   # Standard headers to look like a real browser
   headers = {
@@ -245,17 +262,18 @@ def FEDInvest(price_date):
      (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Content-Type": "application/x-www-form-urlencoded"
   }
-
   #  variable names and type identified from inspecting url
   month=str(price_date.month)
   day=str(price_date.day)
   year=str(price_date.year)
+
 
   # payload passed in request post
   payload={'priceDate.month':month,
            'priceDate.day':day,
            'priceDate.year':year,
            "submit": "Show Prices"}
+
 
   # fires off form and returns prices for date
   try:
@@ -264,12 +282,25 @@ def FEDInvest(price_date):
   except requests.exceptions.RequestException as e:
         return f"Connection Error: {e}", None
 
+
   # reads the html
   # Pandas recommends to wrap the response in StingIO to make file like
   tables=pd.read_html(StringIO(response.text),match='CUSIP')
 
+
   # from inspection there is a single table
-  return tables[0], price_date,settlement_date
+  df=tables[0]
+
+
+  df['MATURITY DATE']=pd.to_datetime(df['MATURITY DATE'])
+
+
+  # drop rows equal to or less than settlement date
+  df_filtered=df[df['MATURITY DATE']>pd.to_datetime(settlement_date[0])]
+
+
+  return df_filtered, price_date,settlement_date[0]
+
 ```
 :::
 
@@ -277,6 +308,7 @@ def FEDInvest(price_date):
 
 ```py
 def clean_FEDInvest(df):
+
 
     import pandas as pd
     # Filters for Standard Securities
@@ -287,10 +319,12 @@ def clean_FEDInvest(df):
     drop_columns=['CUSIP','CALL DATE']
     security_df.drop(columns=drop_columns,inplace=True)
 
+
     # Creates a Time-Series Index
     security_df.set_index('MATURITY DATE',inplace=True)
     security_df.index=pd.to_datetime(security_df.index)
     security_df.sort_index(inplace=True)
+
 
     # Standardizes Financial Terms
     change_column_names={'RATE':'Coupon',
@@ -298,11 +332,13 @@ def clean_FEDInvest(df):
                          'SELL':'Price Bid'}
     security_df.rename(columns=change_column_names,inplace=True)
 
+
     # Formats Numeric Data
     numeric_cols = ['Coupon', 'Price Ask', 'Price Bid', 'YIELD']
     for col in numeric_cols:
         if col in security_df.columns:
             security_df[col] = security_df[col].astype(str).str.replace('%', '', regex=False).astype(float)
+
 
     return security_df
 ```
@@ -311,9 +347,13 @@ def clean_FEDInvest(df):
 :::{dropdown} Click to see `one_y_axis`
 
 ```py
- def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
+def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
                        markers, figure_size, y_limits,save_config={}, fill_config={},
                        colors=None):
+    '''
+    Plots data on a single y-axis.
+
+
     Args:
         x_data (array-like): Data for the x-axis.
         y_data_list (list of array-like): A list of datasets for the y-axis.
@@ -341,47 +381,26 @@ def clean_FEDInvest(df):
     if not all(len(lst) == num_series for lst in [series_labels, markers]):
         raise ValueError("The 'series_labels' and 'markers' lists must have the same length as 'y_data_list'.")
 
+
     if colors and len(colors) != num_series:
         raise ValueError("The 'colors' list must have the same length as 'y_data_list'.")
+
 
     # --- Plotting Setup ---
     fig = plt.figure(figsize=figure_size)
     fig.suptitle(title)
     plt.style.use('ggplot')
 
+
     if colors is None:
         # Generate a default color cycle if none are provided
         colors = plt.cm.viridis_r(np.linspace(0, 1, num_series))
+
 
 # --- Plot Data Series ---
     for i in range(num_series):
         plt.plot(x_data, y_data_list[i], label=series_labels[i], marker=markers[i], color=colors[i])
 
-    # --- Handle Fill Area ---
-    if fill_config.get('Between'):
-        if len(fill_config['Between']) > 2:
-            raise ValueError("The 'Between' key in fill_config can contain a maximum of two indices.")
-
-
-        # Get values from fill_config dict, providing safe defaults
-        start = fill_config.get('Start', 0)
-        end = fill_config.get('End', len(x_data))
-        alpha = fill_config.get('Alpha', 0.3)
-        color = fill_config.get('Colors', 'gray')
-        label = fill_config.get('Labels', None) # 'None' won't create a legend item
-
-        if len(fill_config['Between']) == 2:
-            y1_index, y2_index = fill_config['Between']
-            plt.fill_between(x_data[start:end],
-                             y_data_list[y1_index][start:end],
-                             y_data_list[y2_index][start:end],
-                             color=color, alpha=alpha, label=label)
-        else:
-            y_index = fill_config['Between'][0]
-            # Fills between the series and y=0
-            plt.fill_between(x_data[start:end],
-                             y_data_list[y_index][start:end],
-                             color=color, alpha=alpha, label=label)
 
     # --- Final Touches ---
     plt.ylim(y_limits)
@@ -390,11 +409,15 @@ def clean_FEDInvest(df):
     plt.legend()
     plt.tight_layout()
 
+
     # --- Save Figure ---
     # Calls the save_results function (assumed to be defined)
+
+
     path = save_results(save_config=save_config)
     if path:
-      plt.savefig(path, dpi=300, bbox_inches='tight')
+     plt.savefig(path, dpi=300, bbox_inches='tight')
+
 
     plt.show()
 ```
