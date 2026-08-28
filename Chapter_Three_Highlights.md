@@ -38,7 +38,7 @@ This chapter is divided into the following four distinct sections:
 
 * **🗓️ Bond Payment Data (Jupyter Notebook)**: Calculates the actual payment dates and corresponding amounts for the bond data.
 
-* **💻 Bootstrapping Zero Prices With FEDInvest Data (Jupyter Notebook)**: Downloads data from FEDInvest, calculates the payoff matrix and transaction prices, estimates zero prices using ordinary least squares, and graphs spot rates calculated from those estimated prices.
+* **💻 Bootstrapping Zero Prices With FEDInvest Data (Jupyter Notebook)**: Acceses FEDInvest data, calculates the payoff matrix and transaction prices, estimates zero prices using ordinary least squares, and graphs spot rates calculated from those estimated prices.
 
 * **📦 Imported Functions**: describes the functions imported from financial_quant package.
 
